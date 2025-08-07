@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XV Camila</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9f3f2;
+      color: #333;
+      text-align: center;
+    }
+    .hero {
+      padding: 60px 20px;
+      background: #ffe6ec;
+    }
+    .hero h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+    }
+    .hero p {
+      font-size: 1.2em;
+      color: #555;
+    }
+    .countdown {
+      margin: 30px 0;
+      font-size: 2em;
+      font-weight: bold;
+    }
+    .section {
+      padding: 40px 20px;
+    }
+    .map-container {
+      width: 100%;
+      height: 300px;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    .confirmar-btn {
+      padding: 15px 30px;
+      background: #ff99b3;
+      color: white;
+      font-size: 1.1em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .confirmar-btn:hover {
+      background: #ff7a9e;
+    }
+    .dress-img {
+      max-width: 300px;
+      width: 100%;
+      margin-top: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .whatsapp-info {
+      margin-top: 15px;
+      font-size: 0.9em;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <h1>XV Camila</h1>
+    <p>Quiero compartir contigo un gran día</p>
+  </div>
+
+  <div class="section countdown" id="countdown"></div>
+
+  <div class="section">
+    <h2>¿Dónde?</h2>
+    <p>Athaona 3, Thinkinaku</p>
+    <div class="map-container">
+      <iframe
+        src="https://www.google.com/maps?q=Athaona+3+Thinkinaku&output=embed"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Dress Code</h2>
+    <p>Formal elegante</p>
+    <p>Colores sugeridos: Azul, Bordó, Rojo, Rosa y Dorado</p>
+    <img src="https://pixabay.com/es/illustrations/ai-generado-pareja-tatuaje-hombre-8702374/" alt="Pareja elegante" class="dress-img">
+  </div>
+
+  <div class="section">
+    <h2>Confirmación de Asistencia</h2>
+    <p>Por favor, confirma tu asistencia:</p>
+    <button class="confirmar-btn" onclick="confirmarAsistencia()">Confirmar asistencia por WhatsApp</button>
+    <p class="whatsapp-info">Se abrirá WhatsApp con un mensaje predeterminado que podrás editar antes de enviar</p>
+  </div>
+
+  <script>
+    // Cuenta regresiva
+    const fechaEvento = new Date("2025-09-27T00:00:00").getTime();
+    const countdown = document.getElementById("countdown");
+
+    setInterval(() => {
+      const ahora = new Date().getTime();
+      const distancia = fechaEvento - ahora;
+
+      const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+      const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+
+      countdown.innerHTML = `${dias}d ${horas}h ${minutos}m ${segundos}s`;
+    }, 1000);
+
+    function confirmarAsistencia() {
+      const nombre = prompt("¿Cuál es tu nombre? (opcional)");
+      const telefonoOrganizador = "5493854857914"; // Reemplaza con el número real con código de país
+      const mensajeBase = "Hola, quiero confirmar mi asistencia a los XV de Camila";
+
+      let mensaje = mensajeBase;
+      if (nombre && nombre.trim() !== "") {
+        mensaje = `Hola, soy ${nombre.trim()}. ${mensajeBase}`;
+      }
+
+      // Codificar el mensaje para URL
+      const mensajeCodificado = encodeURIComponent(mensaje);
+
+      // Abrir WhatsApp con el mensaje
+      window.open(`https://wa.me/${telefonoOrganizador}?text=${mensajeCodificado}`, '_blank');
+
+      if (nombre) {
+        alert(`¡Gracias ${nombre}! Se abrirá WhatsApp para que completes tu confirmación.`);
+      } else {
+        alert('¡Gracias! Se abrirá WhatsApp para que completes tu confirmación.');
+      }
+    }
+  </script>
+</body>
+</html>
