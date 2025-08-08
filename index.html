@@ -66,6 +66,63 @@
       font-size: 0.9em;
       color: #666;
     }
+    #modalNombre {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+    .modal-contenido {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      width: 300px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      margin: auto;
+    }
+    .modal-contenido h3 {
+      margin-top: 0;
+      color: #d63384;
+    }
+    .modal-contenido input {
+      width: 90%;
+      padding: 8px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .modal-contenido button {
+      background-color: #d63384;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .modal-contenido button:hover {
+      background-color: #b02a6f;
+    }
+
+    /* Mensaje de confirmación personalizado */
+    #mensajeConfirmacion {
+      display: none;
+      margin-top: 20px;
+      font-weight: bold;
+      color: #d63384;
+      animation: fade 0.5s ease-in-out;
+    }
+
+    @keyframes fade {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
   </style>
 </head>
 <body>
@@ -99,6 +156,18 @@
     <p>Por favor, confirma tu asistencia:</p>
     <button class="confirmar-btn" onclick="confirmarAsistencia()">Confirmar asistencia por WhatsApp</button>
     <p class="whatsapp-info">Se abrirá WhatsApp con un mensaje predeterminado que podrás editar antes de enviar</p>
+    <div id="mensajeConfirmacion"></div>
+  </div>
+
+  <!-- Modal personalizado -->
+  <div id="modalNombre">
+    <div class="modal-contenido">
+      <h3>Confirmación de asistencia</h3>
+      <p>¿Cuál es tu nombre?</p>
+      <input type="text" id="inputNombre" placeholder="Tu nombre aquí">
+      <br>
+      <button onclick="enviarConfirmacion()">Confirmar</button>
+    </div>
   </div>
 
   <script>
@@ -119,26 +188,36 @@
     }, 1000);
 
     function confirmarAsistencia() {
-      const nombre = prompt("¿Cuál es tu nombre? (opcional)");
-      const telefonoOrganizador = "5493854857914"; // Reemplaza con el número real con código de país
-      const mensajeBase = "Hola, quiero confirmar mi asistencia a los XV de Camila";
+      document.getElementById("modalNombre").style.display = "flex";
+    }
+
+    function enviarConfirmacion() {
+      const nombre = document.getElementById("inputNombre").value;
+      const telefonoOrganizador = "5493856785561";
+      const mensajeBase = "quiero confirmar mi asistencia a los XV de Camila";
 
       let mensaje = mensajeBase;
       if (nombre && nombre.trim() !== "") {
         mensaje = `Hola, soy ${nombre.trim()}. ${mensajeBase}`;
       }
 
-      // Codificar el mensaje para URL
       const mensajeCodificado = encodeURIComponent(mensaje);
-
-      // Abrir WhatsApp con el mensaje
       window.open(`https://wa.me/${telefonoOrganizador}?text=${mensajeCodificado}`, '_blank');
 
-      if (nombre) {
-        alert(`¡Gracias ${nombre}! Se abrirá WhatsApp para que completes tu confirmación.`);
-      } else {
-        alert('¡Gracias! Se abrirá WhatsApp para que completes tu confirmación.');
-      }
+      document.getElementById("modalNombre").style.display = "none";
+      document.getElementById("inputNombre").value = '';
+
+      // Mostrar mensaje sin usar alert()
+      const mensajeDiv = document.getElementById("mensajeConfirmacion");
+      mensajeDiv.innerText = nombre
+        ? `¡Gracias ${nombre}! Se abrirá WhatsApp para que completes tu confirmación.`
+        : '¡Gracias! Se abrirá WhatsApp para que completes tu confirmación.';
+      mensajeDiv.style.display = "block";
+
+      // Ocultar mensaje después de 5 segundos
+      setTimeout(() => {
+        mensajeDiv.style.display = "none";
+      }, 5000);
     }
   </script>
 </body>
