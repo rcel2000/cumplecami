@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis XV - Camila</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff6b9d, #c44569, #f8b500, #feca57);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Flores flotantes de fondo */
+        .floating-flowers {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .flower {
+            position: absolute;
+            font-size: 24px;
+            color: rgba(255, 182, 193, 0.6);
+            animation: floatFlower 12s infinite linear;
+        }
+
+        .flower:nth-child(1) { left: 10%; animation-delay: 0s; font-size: 28px; }
+        .flower:nth-child(2) { left: 20%; animation-delay: 2s; font-size: 22px; color: rgba(255, 105, 180, 0.5); }
+        .flower:nth-child(3) { left: 30%; animation-delay: 4s; font-size: 26px; color: rgba(255, 20, 147, 0.4); }
+        .flower:nth-child(4) { left: 40%; animation-delay: 6s; font-size: 24px; }
+        .flower:nth-child(5) { left: 50%; animation-delay: 8s; font-size: 30px; color: rgba(255, 182, 193, 0.5); }
+        .flower:nth-child(6) { left: 60%; animation-delay: 10s; font-size: 20px; }
+        .flower:nth-child(7) { left: 70%; animation-delay: 1s; font-size: 25px; color: rgba(255, 105, 180, 0.6); }
+        .flower:nth-child(8) { left: 80%; animation-delay: 3s; font-size: 27px; }
+        .flower:nth-child(9) { left: 90%; animation-delay: 5s; font-size: 23px; color: rgba(255, 20, 147, 0.5); }
+
+        @keyframes floatFlower {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Navigation con decoración floral */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            border-bottom: 3px solid transparent;
+            background-image: linear-gradient(white, white), 
+                            linear-gradient(45deg, #ff6b9d, #c44569, #ff9ff3);
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+        }
+
+        .navbar::before {
+            content: "🌸 🌺 🌸";
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 0 15px;
+            color: #ff6b9d;
+            font-size: 14px;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 0 20px;
+        }
+
+        .nav-item {
+            background: linear-gradient(135deg, #ff6b9d, #c44569);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-item::before {
+            content: "🌸";
+            position: absolute;
+            left: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 12px;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.4);
+        }
+
+        .nav-item:hover::before {
+            opacity: 1;
+            left: -10px;
+        }
+
+        /* Sections con marcos florales */
+        .section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 20px 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            border: 3px solid transparent;
+            background-image: linear-gradient(white, white), 
+                            linear-gradient(45deg, #ff6b9d, #c44569, #ff9ff3, #ffb6c1);
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+            position: relative;
+        }
+
+        .container::before {
+            content: "🌹";
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            font-size: 24px;
+            background: white;
+            padding: 0 8px;
+        }
+
+        .container::after {
+            content: "🌺";
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            font-size: 24px;
+            background: white;
+            padding: 0 8px;
+        }
+
+        .large-container {
+            max-width: 800px;
+        }
+
+        .large-container::before {
+            content: "🌸 🌹 🌺 🌸";
+        }
+
+        .large-container::after {
+            content: "🌺 🌸 🌹 🌺";
+        }
+
+        /* Home Section con decoración especial */
+        .title {
+            color: #c44569;
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(45deg, #ff6b9d, #c44569);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .title::before {
+            content: "🌸";
+            position: absolute;
+            left: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            -webkit-text-fill-color: #ff6b9d;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .title::after {
+            content: "🌸";
+            position: absolute;
+            right: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            -webkit-text-fill-color: #ff6b9d;
+            animation: pulse 2s ease-in-out infinite;
+            animation-delay: 1s;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+            position: relative;
+        }
+
+        .subtitle::before {
+            content: "🌺 ✨ 🌺";
+            display: block;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: #ff6b9d;
+        }
+
+        .date-info {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            position: relative;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .date-info::before {
+            content: "🌸";
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 0 8px;
+            font-size: 18px;
+        }
+
+        .countdown {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+            border: 1px solid rgba(255, 182, 193, 0.3);
+        }
+
+        .countdown-item::before {
+            content: "🌺";
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            font-size: 12px;
+        }
+
+        .countdown-number {
+            font-size: 2rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .countdown-label {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+
+        /* Trivia Section con flores */
+        .trivia-header {
+            background: linear-gradient(135deg, #ff6b9d, #c44569);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 20px rgba(196, 69, 105, 0.3);
+            position: relative;
+        }
+
+        .trivia-header::before {
+            content: "🌸 🎮 🌸";
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            color: #ff6b9d;
+            padding: 0 10px;
+            font-size: 14px;
+            border-radius: 10px;
+        }
+
+        .trivia-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .player-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 182, 193, 0.3);
+        }
+
+        .progress {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            height: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 182, 193, 0.3);
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, #feca57, #f8b500);
+            height: 100%;
+            width: 100%;
+            border-radius: 20px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* Gallery con marco floral */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .gallery-item {
+            background: linear-gradient(135deg, #feca57, #f8b500);
+            height: 200px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            border: 2px solid rgba(255, 182, 193, 0.4);
+        }
+
+        .gallery-item::before {
+            content: "🌸";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 16px;
+        }
+
+        .gallery-item::after {
+            content: "🌺";
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 16px;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        /* Info Cards con decoración floral */
+        .info-card {
+            background: linear-gradient(135deg, #00b894, #00a085);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            text-align: left;
+            position: relative;
+            border: 2px solid rgba(255, 182, 193, 0.3);
+        }
+
+        .info-card::before {
+            content: "🌹";
+            position: absolute;
+            top: -8px;
+            left: 20px;
+            background: white;
+            padding: 0 5px;
+            font-size: 16px;
+        }
+
+        .info-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #feca57;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .info-card h3::before {
+            content: "🌺";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 14px;
+        }
+
+        .info-card p {
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        /* Buttons con flores */
+        .btn {
+            background: linear-gradient(135deg, #ff6b9d, #c44569);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn::before {
+            content: "🌸";
+            position: absolute;
+            left: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 14px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.4);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+        }
+
+        .btn-secondary::before {
+            content: "🌺";
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #00b894, #00a085);
+        }
+
+        .btn-success::before {
+            content: "🌹";
+        }
+
+        /* Form con decoración floral */
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #c44569;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .form-group label::before {
+            content: "🌸";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 12px;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e1e1e1;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #ff6b9d;
+            box-shadow: 0 0 10px rgba(255, 107, 157, 0.2);
+        }
+
+        /* Decorative elements mejorados */
+        .decorative-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .heart, .sparkle {
+            position: absolute;
+            color: rgba(255, 107, 157, 0.3);
+            font-size: 20px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .heart:nth-child(odd) { animation-delay: 0s; }
+        .heart:nth-child(even) { animation-delay: 2s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(5deg); }
+            66% { transform: translateY(10px) rotate(-5deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Pétalos especiales para secciones importantes */
+        .section-flowers {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .petal {
+            position: absolute;
+            font-size: 14px;
+            color: rgba(255, 182, 193, 0.4);
+            animation: petalFall 8s infinite linear;
+        }
+
+        .petal:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .petal:nth-child(2) { left: 30%; animation-delay: 1s; color: rgba(255, 105, 180, 0.4); }
+        .petal:nth-child(3) { left: 50%; animation-delay: 2s; }
+        .petal:nth-child(4) { left: 70%; animation-delay: 3s; color: rgba(255, 20, 147, 0.4); }
+        .petal:nth-child(5) { left: 90%; animation-delay: 4s; }
+
+        @keyframes petalFall {
+            0% {
+                transform: translateY(-50px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(calc(100vh + 50px)) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Marco floral para mensaje especial */
+        .floral-message {
+            position: relative;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(255, 182, 193, 0.1);
+            border: 2px solid #ff6b9d;
+            border-radius: 15px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .floral-message::before {
+            content: "🌸 💕 🌸";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 0 10px;
+            font-size: 16px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                gap: 10px;
+            }
+            
+            .nav-item {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+            
+            .container {
+                padding: 30px 20px;
+                margin: 10px;
+            }
+            
+            .title {
+                font-size: 2rem;
+            }
+            
+            .title::before,
+            .title::after {
+                font-size: 1.5rem;
+                left: -30px;
+                right: -30px;
+            }
+            
+            .subtitle {
+                font-size: 1.4rem;
+            }
+
+            .countdown {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .flower {
+                font-size: 20px;
+            }
+        }
+
+        /* Hidden sections initially */
+        .section:not(.active) {
+            display: none;
+        }
+
+        .section.active {
+            display: flex;
+        }
+
+        /* Efectos especiales para hover en elementos florales */
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .info-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Flores flotantes de fondo -->
+    <div class="floating-flowers">
+        <div class="flower">🌸</div>
+        <div class="flower">🌺</div>
+        <div class="flower">🌹</div>
+        <div class="flower">🌷</div>
+        <div class="flower">🌸</div>
+        <div class="flower">🌺</div>
+        <div class="flower">🌹</div>
+        <div class="flower">🌷</div>
+        <div class="flower">🌸</div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a class="nav-item" onclick="showSection('home')">🏠 Inicio</a>
+            <a class="nav-item" onclick="showSection('info')">📋 Información</a>
+            <a class="nav-item" onclick="showSection('location')">📍 Ubicación</a>
+            <a class="nav-item" onclick="showSection('rsvp')">✉️ Confirmación</a>
+            <a class="nav-item" onclick="showSection('gifts')">🎁 Regalos</a>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="section active">
+        <div class="section-flowers">
+            <div class="petal">🌸</div>
+            <div class="petal">🌺</div>
+            <div class="petal">🌹</div>
+            <div class="petal">🌷</div>
+            <div class="petal">🌸</div>
+        </div>
+        
+        <div class="decorative-elements">
+            <div class="heart">💖</div>
+            <div class="heart">💕</div>
+            <div class="sparkle">✨</div>
+            <div class="sparkle">⭐</div>
+        </div>
+        
+        <div class="container">
+            <h1 class="title">Mis XV</h1>
+            <h2 class="subtitle">Camila</h2>
+            
+            <div class="date-info">
+                <div><strong>📅 Sábado 27 de Septiembre 2025</strong></div>
+                <div><strong>🕰️ 22:00 hs</strong></div>
+                <div style="margin-top: 15px; font-size: 1rem;">¡Faltan solo...</div>
+                
+                <div class="countdown" id="countdown">
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="days">-</span>
+                        <span class="countdown-label">Días</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="hours">-</span>
+                        <span class="countdown-label">Horas</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="minutes">-</span>
+                        <span class="countdown-label">Minutos</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="seconds">-</span>
+                        <span class="countdown-label">Segundos</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="floral-message">
+                "Los sueños que tenía de niña, hoy se hacen realidad. Te invito a celebrar conmigo este momento tan especial."
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Section -->
+    <section id="info" class="section">
+        <div class="section-flowers">
+            <div class="petal">🌸</div>
+            <div class="petal">🌺</div>
+            <div class="petal">🌹</div>
+            <div class="petal">🌷</div>
+            <div class="petal">🌸</div>
+        </div>
+        
+        <div class="container large-container">
+            <h2 class="title" style="font-size: 2.5rem;">Información</h2>
+            
+            <div class="info-card">
+                <h3>🎉 La Celebración</h3>
+                <p>Después de mucho esperar, llegó el momento de celebrar mis XV años. Será una noche mágica llena de música, baile y mucha diversión.</p>
+                <p><strong>Dress Code:</strong> Elegante / Formal</p>
+                <p><strong>Colores:</strong> Colores que no puedes usar: Azul, Bordó, Rojo, Rosa y Dorado</p>
+            </div>
+            
+            <div class="info-card">
+                <h3>🍽️ Cena & Fiesta</h3>
+                <p>Comenzaremos con una cena especial a las 21:00 hs, seguida de la tradicional ceremonia del vals y después... ¡A bailar toda la noche!</p>
+                <p><strong>Menú:</strong> Entrada, plato principal, postre y brindis</p>
+            </div>
+            
+            <div class="info-card">
+                <h3>Misa</h3>
+                <p>Catedral Basilica:</p>
+                <p><strong>Miercoles 25 de Setiembre de 2025</p>
+                <p><strong>20:00 Hs</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section id="location" class="section">
+        <div class="section-flowers">
+            <div class="petal">🌸</div>
+            <div class="petal">🌺</div>
+            <div class="petal">🌹</div>
+            <div class="petal">🌷</div>
+            <div class="petal">🌸</div>
+        </div>
+        
+        <div class="container">
+            <h2 class="title" style="font-size: 2.5rem;">Ubicación</h2>
+            
+            <div class="info-card">
+                <h3>🏛️ Salón de Eventos</h3>
+                <p><strong id="venue-name"></strong></p>
+                <p id="venue-address"></p>
+                <p id="venue-phone"></p>
+            </div>
+            
+            <div style="background: #f8f9fa; padding: 20px; border-radius: 15px; margin: 20px 0; color: #666; text-align: center; border: 2px solid rgba(255, 182, 193, 0.3);">
+                <div style="margin-bottom: 10px;">🗺️ Mapa interactivo</div>
+                <iframe id="google-map" 
+                    src="" 
+                    width="100%" 
+                    height="250" 
+                    style="border:0; border-radius: 10px;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+            
+            <button class="btn-secondary btn" onclick="openMaps()">
+                📍 Abrir en Google Maps
+            </button>
+            
+            <button class="btn" onclick="editLocation()" style="margin-left: 10px;">
+                ✏️ Personalizar Ubicación
+            </button>
+            
+            <div class="info-card" style="margin-top: 20px;">
+                <h3>🚗 Como llegar</h3>
+                <p id="transport-car"></p>
+                <p id="transport-bus"></p>
+                <p id="transport-train"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP Section -->
+    <section id="rsvp" class="section">
+        <div class="section-flowers">
+            <div class="petal">🌸</div>
+            <div class="petal">🌺</div>
+            <div class="petal">🌹</div>
+            <div class="petal">🌷</div>
+            <div class="petal">🌸</div>
+        </div>
+        
+        <div class="container">
+            <h2 class="title" style="font-size: 2.5rem;">Confirmación</h2>
+            <p style="margin-bottom: 30px; color: #666;">Por favor confirma tu asistencia antes del 20 de Septiembre</p>
+            
+            <div class="info-card">
+                <h3>📱 Confirmar por WhatsApp</h3>
+                <p>Para confirmar tu asistencia, escríbenos por WhatsApp con la siguiente información:</p>
+                <p><strong>Tu nombre completo</strong></p>
+                <p><strong>Si asistirás o no</strong></p>
+                <!--<p><strong>Cantidad de acompañantes</strong></p>-->
+                <!--<p><strong>Restricciones alimentarias (si las tenés)</strong></p>-->
+            </div>
+            
+            <div style="display: grid; gap: 15px; margin-top: 20px;">
+                <button class="btn" onclick="sendWhatsAppRSVP('camila')">
+                    📱 Confirmar con Camila<br>
+                    <small style="opacity: 0.8;">+54 9 11 1234-5678</small>
+                </button>
+                
+                <button class="btn-secondary btn" onclick="sendWhatsAppRSVP('mama')">
+                    📱 Confirmar con Rocio (Mamá)<br>
+                    <small style="opacity: 0.8;">+54 9 3856785561</small>
+                </button>
+            </div>
+            
+            <div class="floral-message" style="text-align: left; margin-top: 25px;">
+                <h4 style="color: #c44569; margin-bottom: 10px;">💌 Mensaje sugerido:</h4>
+                <p style="font-style: italic; color: #666; line-height: 1.5;">
+                    "¡Hola! Soy [TU NOMBRE] y quiero confirmar mi asistencia a los XV de Camila el 27/09. 
+                    [SÍ/NO]. 
+                    ¡Muchas gracias!"
+                </p>
+            </div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: rgba(116, 185, 255, 0.1); border-radius: 10px; border: 2px solid rgba(116, 185, 255, 0.3); position: relative;">
+                <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: white; padding: 0 10px; font-size: 16px;">📞</div>
+                <p style="color: #0984e3; font-weight: bold; margin-bottom: 5px;">📞 También podés llamar:</p>
+                <p style="color: #666;">Si preferís confirmar por teléfono, podés llamar a los mismos números.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gifts Section -->
+    <section id="gifts" class="section">
+        <div class="section-flowers">
+            <div class="petal">🌸</div>
+            <div class="petal">🌺</div>
+            <div class="petal">🌹</div>
+            <div class="petal">🌷</div>
+            <div class="petal">🌸</div>
+        </div>
+        
+        <div class="container">
+            <h2 class="title" style="font-size: 2.5rem;">Regalos</h2>
+            <div class="floral-message" style="margin-bottom: 30px;">
+                "Tu presencia es el mejor regalo, pero si deseas obsequiarme algo..."
+            </div>
+            
+           <!-- <div class="info-card">
+                <h3>📋 Lista de Regalos</h3>
+                <p>He preparado una lista en las siguientes tiendas:</p>
+                <p><strong>Falabella:</strong> Lista #12345</p>
+                <p><strong>Coto:</strong> Lista #67890</p>
+            </div>-->
+            
+            <div class="info-card">
+                <h3>💰 Colaboración</h3>
+                <p>Si preferís colaborar te dejo mi cuenta aqui abajo:</p>
+                <p><strong>CBU:</strong> 1234567890123456789012</p>
+                <p><strong>Alias:</strong> CAMILA.XV</p>
+                <p><strong>Titular:</strong> Camila Maldonado</p>
+            </div>
+            
+            <div class="info-card">
+                <h3>💌 Sobres</h3>
+                <p>También podés entregar tu regalo el día de la fiesta.</p>
+                <p>Habrá una mesa especial para sobres y regalos.</p>
+            </div>
+            
+            <button class="btn" onclick="copyBankInfo()">
+                📋 Copiar datos bancarios
+            </button>
+        </div>
+    </section>
+
+    <script>
+        let currentQuestion = 4;
+        let totalQuestions = 4;
+        let points = 0;
+
+        // CONFIGURACIÓN DE UBICACIÓN - Modifica aquí los datos del lugar
+        const LOCATION_CONFIG = {
+            venueName: '"Finca Tinkunaku"',
+            address: 'Calle Valencia S/N Barrio Athaona 3',
+            phone: 'Tel: (385) 678-5561',
+            mapEmbedUrl: 'https://maps.app.goo.gl/LJVXfHZb6c67ftiR7',
+            googleMapsSearchUrl: 'https://www.google.com/maps/place/Av.+del+Libertador+1234,+C1001+CABA',
+            transport: {
+                car: '<strong>En auto:</strong> Estacionamiento gratuito disponible'
+				//,
+                //bus: '<strong>En colectivo:</strong> Líneas 10, 37, 130',
+                //train: '<strong>En tren:</strong> Estación Belgrano a 5 cuadras'
+            }
+        };
+
+        // Variables de ubicación para uso dinámico
+        let locationData = { ...LOCATION_CONFIG };
+
+        // Navigation
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        // Countdown timer
+        function updateCountdown() {
+            const eventDate = new Date('2025-09-27 19:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = days > 0 ? days : 0;
+            document.getElementById('hours').textContent = hours > 0 ? hours : 0;
+            document.getElementById('minutes').textContent = minutes > 0 ? minutes : 0;
+            document.getElementById('seconds').textContent = seconds > 0 ? seconds : 0;
+
+            if (distance < 0) {
+                document.getElementById('countdown').innerHTML = '<div style="grid-column: 1/-1; color: #ff6b9d; font-size: 1.5rem; font-weight: bold;">¡Es hoy! 🎉</div>';
+            }
+        }
+
+        // WhatsApp RSVP function
+        function sendWhatsAppRSVP(contact) {
+            let phone, name;
+            if (contact === 'camila') {
+                phone = '5491112345678';
+                name = 'Camila';
+            } else {
+                phone = '5493856785561';
+                name = 'Rocio';
+            }
+            
+            const message = encodeURIComponent(
+                `¡Hola ${name}! Quiero confirmar mi asistencia a los XV de Camila el 27/09. \n\n` +
+                `Por favor completá con tu información:\n` +
+                `• Nombre: [TU NOMBRE]\n` +
+                `• ¿Asistirás?: [SÍ/NO]\n` +
+                `• Acompañantes: [CANTIDAD]\n` +
+                `• Restricciones alimentarias: [SI LAS HAY]\n\n` +
+                `¡Muchas gracias! 💕🎉`
+            );
+            
+            const whatsappURL = `https://wa.me/${phone}?text=${message}`;
+            window.open(whatsappURL, '_blank');
+        }
+
+        // Location management
+        function editLocation() {
+            const newVenueName = prompt('Nombre del salón/lugar:', locationData.venueName.replace(/"/g, ''));
+            const newAddress = prompt('Dirección completa:', locationData.address);
+            const newPhone = prompt('Teléfono (opcional):', locationData.phone.replace('Tel: ', ''));
+            const newMapUrl = prompt('URL del mapa embebido de Google Maps\n(Ve a Google Maps → Compartir → Insertar un mapa → Copiar HTML → Extraer la URL del src):', locationData.mapEmbedUrl);
+            
+            if (newVenueName !== null && newAddress !== null) {
+                // Actualizar datos
+                locationData.venueName = `"${newVenueName}"`;
+                locationData.address = newAddress;
+                locationData.phone = newPhone ? `Tel: ${newPhone}` : '';
+                
+                if (newMapUrl && newMapUrl.trim() !== '') {
+                    locationData.mapEmbedUrl = newMapUrl;
+                }
+                
+                // Generar URL de Google Maps para abrir
+                locationData.googleMapsSearchUrl = `https://www.google.com/maps/search/${encodeURIComponent(newAddress)}`;
+                
+                // Preguntar por transporte personalizado
+                const customizeTransport = confirm('¿Deseas personalizar las instrucciones de transporte?');
+                if (customizeTransport) {
+                    const newCar = prompt('Instrucciones para auto:', locationData.transport.car.replace(/<[^>]*>/g, ''));
+                    const newBus = prompt('Instrucciones para colectivo/bus:', locationData.transport.bus.replace(/<[^>]*>/g, ''));
+                    const newTrain = prompt('Instrucciones para tren/metro:', locationData.transport.train.replace(/<[^>]*>/g, ''));
+                    
+                    if (newCar) locationData.transport.car = `<strong>En auto:</strong> ${newCar}`;
+                    if (newBus) locationData.transport.bus = `<strong>En colectivo:</strong> ${newBus}`;
+                    if (newTrain) locationData.transport.train = `<strong>En tren:</strong> ${newTrain}`;
+                }
+                
+                // Actualizar la interfaz
+                updateLocationDisplay();
+                alert('¡Ubicación actualizada correctamente! 📍✨');
+            }
+        }
+
+        function updateLocationDisplay() {
+            document.getElementById('venue-name').textContent = locationData.venueName;
+            document.getElementById('venue-address').textContent = locationData.address;
+            document.getElementById('venue-phone').textContent = locationData.phone;
+            document.getElementById('google-map').src = locationData.mapEmbedUrl;
+            document.getElementById('transport-car').innerHTML = locationData.transport.car;
+            document.getElementById('transport-bus').innerHTML = locationData.transport.bus;
+            document.getElementById('transport-train').innerHTML = locationData.transport.train;
+        }
+
+        function openMaps() {
+            window.open(locationData.googleMapsSearchUrl, '_blank');
+        }
+
+        function copyBankInfo() {
+            navigator.clipboard.writeText("CBU: 1234567890123456789012\nAlias: CAMILA.XV\nTitular: Camila Maldonado").then(() => {
+                alert("¡Datos bancarios copiados al portapapeles! 📋💕");
+            });
+        }
+
+        // Initialize
+        function initializeApp() {
+            // Cargar configuración de ubicación inicial
+            updateLocationDisplay();
+            // Iniciar countdown
+            setInterval(updateCountdown, 1000);
+            updateCountdown();
+        }
+
+        // Ejecutar inicialización cuando la página cargue
+        document.addEventListener('DOMContentLoaded', initializeApp);
+        
+        // Fallback para navegadores más antiguos
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeApp);
+        } else {
+            initializeApp();
+        }
+
+        // Crear flores adicionales dinámicamente
+        function createAdditionalFlowers() {
+            const container = document.querySelector('.floating-flowers');
+            const flowers = ['🌸', '🌺', '🌹', '🌷', '🌻', '💐'];
+            
+            // Crear más flores para un efecto más rico
+            for (let i = 0; i < 15; i++) {
+                const flower = document.createElement('div');
+                flower.className = 'flower';
+                flower.textContent = flowers[Math.floor(Math.random() * flowers.length)];
+                flower.style.left = Math.random() * 100 + '%';
+                flower.style.animationDelay = Math.random() * 12 + 's';
+                flower.style.fontSize = (Math.random() * 10 + 18) + 'px';
+                flower.style.color = `rgba(${Math.random() * 255}, ${Math.random() * 100 + 100}, ${Math.random() * 100 + 150}, ${Math.random() * 0.4 + 0.3})`;
+                container.appendChild(flower);
+            }
+        }
+
+        // Inicializar flores adicionales
+        setTimeout(createAdditionalFlowers, 1000);
+    </script>
+</body>
+</html>
